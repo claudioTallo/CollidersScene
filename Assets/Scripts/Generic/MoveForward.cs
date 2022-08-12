@@ -28,7 +28,7 @@ public class MoveForward : MonoBehaviour
 
     private void DestroyDelay()
     {
-        Debug.Log("DESTROY DELAY");
+        // Debug.Log("DESTROY DELAY");
         Destroy(gameObject);
     }
 }

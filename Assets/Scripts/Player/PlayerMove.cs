@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     [Range(1f, 10f)]
     private float speed = 3f;
 
+    private Vector3 playerPosition;
     // Propiedad empleada para almacenar la rotacion de la camara en Y.
     private float cameraAxisX = 0f;
 
@@ -19,6 +20,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerPosition = gameObject.transform.position;
         RotatePlayer();
         if (Input.GetKey(KeyCode.W))
         {
@@ -58,6 +60,17 @@ public class PlayerMove : MonoBehaviour
         // Forma para rotar "gradualmente" hacia una nueva rotación con Lerp.
         Quaternion newRotation = Quaternion.Euler(0, cameraAxisX, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 2.5f * Time.deltaTime);
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        // Debug.Log("EN CONTACTO CON: " + other.gameObject.name);
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            //Debug.Log("ESTOY EN EL SUELO");
+            playerPosition = new Vector3(playerPosition.x, y:0, playerPosition.z);
+        }
+
     }
 }
 

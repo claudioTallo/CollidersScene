@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     private PlayerData playerData;
-    private Vector3 playerPosition;
 
     private void Start()
     {
@@ -14,20 +13,10 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("HA COLISIONADO CON: " + other.gameObject.name);
-
-        if (other.gameObject.CompareTag("Floor"))
-        {
-            Debug.Log("ESTOY EN EL SUELO");
-        }
-
-        if (other.gameObject.CompareTag("Portals"))
-        {
-            
-        }
 
         if (other.gameObject.CompareTag("Powerups"))
         {
+            Debug.Log("ENTRANDO EN COLISION CON: " + other.gameObject.name);
             Destroy(other.gameObject);
             //sumar vida
             playerData.Healing(other.gameObject.GetComponent<Pumpkin>().HealPoints);
@@ -35,7 +24,7 @@ public class PlayerCollision : MonoBehaviour
 
         if (other.gameObject.CompareTag("Munitions"))
         {
-            Debug.Log("ENTRANDO EN COLISION CON " + other.gameObject.name);
+            Debug.Log("ENTRANDO EN COLISION CON: " + other.gameObject.name);
             playerData.Damage(other.gameObject.GetComponent<Munition>().DamagePoints);
             Destroy(other.gameObject);
             if (playerData.HP <= 0)
@@ -43,26 +32,29 @@ public class PlayerCollision : MonoBehaviour
                 Debug.Log("GAME OVER");
             }
         }
+
     }
 
     private void OnCollisionExit(Collision other)
     {
         //Debug.Log("SALGO DE LA COLISION ->" + other.gameObject.name);
-    }
 
-    private void OnCollisionStay(Collision other)
-    {
-        //Debug.Log("EN CONTACO CON ->" + other.gameObject.name);
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
+
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Portals"))
+        {
 
+        }
+        
     }
 
     private void OnTriggerStay(Collider other)
