@@ -41,7 +41,6 @@ public class PortalManager : MonoBehaviour
 
 /*         {
             PlayerData playerReference = other.gameObject.GetComponent<PlayerData>();
-
             if(playerReference != null)
             {
                 Debug.Log("HE TOCADO A: " + other.gameObject.name);

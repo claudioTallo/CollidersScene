@@ -34,31 +34,4 @@ public class PlayerCollision : MonoBehaviour
         }
 
     }
-
-    private void OnCollisionExit(Collision other)
-    {
-        //Debug.Log("SALGO DE LA COLISION ->" + other.gameObject.name);
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Portals"))
-        {
-
-        }
-        
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-
-    }
 }
